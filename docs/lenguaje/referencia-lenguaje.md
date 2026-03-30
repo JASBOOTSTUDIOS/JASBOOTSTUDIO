@@ -676,11 +676,14 @@ Las llamadas de sistema son funciones predefinidas. Sintaxis: `nombre(argumentos
 | `str_desde_numero(n)` | Número a texto | `str_desde_numero(42)` |
 | `codigo_caracter(s)` | Código ASCII del primer carácter | `codigo_caracter("A")` → 65 |
 | `caracter_a_texto(c)` | Carácter (código) a texto de 1 char | `caracter_a_texto(65)` → "A" |
-| `extraer_subtexto(s, i, l)` | Subcadena | `extraer_subtexto(s, 0, 5)` |
+| `extraer_subtexto(s, i, l)` | Subcadena desde índice `i` durante `l` caracteres | `extraer_subtexto(s, 0, 5)` |
+| `extraer_subtexto(s, i)` | Desde índice `i` hasta el final (omitir longitud) | `extraer_subtexto("abcdef", 3)` → `"def"` |
+| `extraer_antes_de(s, pat)` | Texto antes de la primera aparición de `pat` | `extraer_antes_de("a,b", ",")` → `"a"` |
+| `extraer_despues_de(s, pat)` | Texto después de la primera aparición de `pat` (salta espacios iniciales tras el patrón) | `extraer_despues_de("k:v", ":")` → `"v"` |
 | `contiene_texto(s, p)` | ¿Contiene patrón? | `contiene_texto(s, "abc")` |
 | `termina_con(s, suf)` | ¿Termina con? | `termina_con(nom, ".jasb")` |
 
-**Aridad (compilador):** `jbc` comprueba el número de argumentos en estas llamadas. Por ejemplo, `concatenar` exige dos textos; `longitud`/`longitud_texto`, `minusculas`/`str_minusculas` y `copiar_texto`/`str_copiar` exigen uno; `dividir`/`dividir_texto` exigen dos (cadena y separador). Si faltan o sobran argumentos, el error semántico indica cuántos faltan o sobran y sugiere un ejemplo válido.
+**Aridad (compilador):** `jbc` comprueba el número de argumentos en estas llamadas. Por ejemplo, `concatenar` exige dos textos; `longitud`/`longitud_texto`, `minusculas`/`str_minusculas` y `copiar_texto`/`str_copiar` exigen uno; `dividir`/`dividir_texto` exigen dos (cadena y separador); `extraer_subtexto` admite **dos o tres** (texto, índice, longitud opcional); `extraer_antes_de` y `extraer_despues_de` exigen **dos** (texto y patrón). Si faltan o sobran argumentos, el error semántico indica cuántos faltan o sobran y sugiere un ejemplo válido.
 
 ### Listas
 
